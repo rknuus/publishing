@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>High Performance & Precision Wire Bonder</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .image-wirebonding-stages img {
+        width: 100%;
+      }
+      .image-air img {
+        width: 75%;
+      }
+      .image-stiffness img {
+        width: 70%;
+      }
+      .image-rotation img {
+        width: 55%;
+      }
+      .image-central img {
+        width: 45%;
+      }
+      .image-model img {
+        width: 60%;
+      }
+
+      p {
+          margin-top: 0.5em;
+          margin-bottom: 0.5em;
+      }
+
+      a {
+          color: #f44336;
+          text-decoration: none;
+      }
+
+      /* column layouts */
+      .left-column {
+          width: 50%;
+          float: left;
+      }
+
+      .right-column {
+          width: 50%;
+          float: right;
+      }
+
+      .single-column {
+          clear: both;
+      }
+
+      .inverse {
+          background-color: #006064;
+          color: #ECEFF1;
+          text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+          color: #ECEFF1;
+          line-height: 0.8em;
+      }
+      .inverse a {
+          color: #ECEFF1;
+          text-decoration: none;
+          font-family: monospace;
+      }
+
+      .bgimg h1, .bgimg h2 {
+          /* 5 shadows for extra contrast on top of background image */
+          text-shadow:  0px  0px 2px #111, -2px -2px 4px #111, -2px 2px 4px
+#111, 2px 2px 4px #111, 2px -2px 4px #111;
+      }
+
+      blockquote {
+          font-style: italic;
+          font-size: 24px;
+          text-align: center;
+      }
+
+      ol {
+          counter-reset: li;
+          padding-left: 18px
+      }
+      ol > li {
+          list-style: none;
+      }
+      ol > li:before {
+          content: counter(li) ".";
+          counter-increment: li;
+          display: inline-block;
+          width: 1.25em;
+
+          color: #EF6C00;
+          font-size: 32px;
+          font-style: italic;
+      }
+
+      img {
+          max-width: 100%;
+      }
+
+      .small {
+          font-size: 0.75em;
+      }
+
+      .credit {
+          font-size: 0.75em;
+          opacity: 0.75;
+          position: absolute;
+          left: 20px;
+          bottom: 12px;
+      }
+
+      .remark-code, .remark-inline-code {
+          font-family: 'Ubuntu Mono';
+          font-size: 1.2em;
+      }
+
+      @page {
+        size: 908px 681px;
+        /*size: 1210px 681px;*/
+        margin: 0;
+      }
+
+      @media print {
+        .remark-slide-scaler {
+          width: 100% !important;
+          height: 100% !important;
+          transform: scale(1) !important;
+          top: 0 !important;
+          left: 0 !important;
+        }
+       .remark-container.remark-presenter-mode .remark-slide-notes {
+          margin-top:700px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+name: inverse
+layout: true
+class: center, middle, inverse
+
+---
+
+class: center, middle
+
+# High Performance & Precision Wire Bonder
+
+Raphael Knaus, rknuus@gmail.com
+02-Jul-2018
+
+---
+
+layout: false
+
+# Agenda
+
+1. What is Wire Bonding?
+1. System Overview
+1. High Performance
+1. High Precision
+1. Conclusion
+
+???
+
+- does **anybody need** an **introduction to Wire Bonding?**
+  - if you all know what that's about we can skip the first part and save some time
+
+---
+
+template: inverse
+
+# What is Wire Bonding?
+
+---
+
+# Wire Bonding: a chip production step
+
+.image-wirebonding-stages[![Wire Bonding as chip roduction step](chip-manufacturing.png)]
+
+.credit[https://upload.wikimedia.org/wikipedia/commons/8/8b/TQFP_Leadframe.jpg<br>https://amkor.com/technology/interconnect/<br>https://www.lectronics.net/manufacturing/wire-bonding/]
+
+???
+
+- Wire Bonding is one of the **last step**s in chip production
+- Starting with a functioning chip in the step before Wire Bonding the chip is pulled from the wafer and glued onto a substrate, e.g. a leadframe.
+- With a Wire Bonder the connection pads on the chip are connected to the substrate with a thin wire, typically gold or sometimes also copper and other metals
+  - Wire can be thinner than a human hair (e.g. wire: 12.5 micrometres hair: 17um - 180um)
+- The next step usually is molding: pouring plastic over the chip to form black cube we all know as computer chip
+
+---
+
+# Stages of wire bonding
+
+.image-wirebonding-stages[![Wire Bonding stages](http://www.mdpi.com/sensors/sensors-09-04986/article_deploy/html/images/sensors-09-04986f1.png)]
+
+.credit[http://www.mdpi.com/sensors/sensors-09-04986/article_deploy/html/images/sensors-09-04986f1.png, see [1] for a demo]
+
+???
+
+- With an electrical spark the end of the wire gets melted
+- The ball now has to be pressed onto the chip before it hardenes and with enough force to interconnect the two materials but not too much force, otherwise the chip would get damaged
+  - To improve interconnection quality additional features like ultrasonic energy and heat are applied at the same time.
+- In a series of wild movements enough wire is released and kinked to form the shape you need. Of course, wires must not touch each other. And there are applications like stacked chips combined with force on the wire during molding which require interesting shapes.
+- Finally the other end is simply wedged onto the substrate to build the other interconnection
+- Then it starts over
+
+---
+
+template: inverse
+
+# System Overview
+
+---
+
+# WireBonder 3100
+
+.center[![Wire Bonder](http://2.bp.blogspot.com/_lN1ruKCxAno/SbTXiJ0zh7I/AAAAAAAAAUI/VJyXtQc7Dow/s320/main.jpg)]
+
+.credit[http://2.bp.blogspot.com/_lN1ruKCxAno/SbTXiJ0zh7I/AAAAAAAAAUI/VJyXtQc7Dow/s320/main.jpg]
+
+???
+
+- Pardon the low quality image, was the best I could find
+- Material flow is from left to right
+- Boxes of substrates are loaded
+  - substrate by substrate (with the chip already mounted) is pushed into the machine
+  - scanned by the vision system to compensate material offsets
+  - wire bonded
+  - and finally pushed out into a box at the right side
+
+---
+
+# Electronic systems
+
+.center[.image-wirebonding-stages[![system overview](system-overview.png)]]
+
+???
+
+- non-RT system running Windows NT..XP
+  - GUI and DB
+  - Prepare data for an entire bonding cycle
+  - Download data to RT system
+  - Clue: If non-RT system lags, production paused at process uncritical stages (e.g. before melting the wire)
+  - Trigger bonding cycle
+- Central RT system running controller with fix cycle
+  - read inputs from fieldbus input buffers, calculate new controller outputs, write outputs to output buffer, do other work if necessary
+  - Coordination of coupled axes
+- Ca. 25 fieldbus slaves driving motors and reading sensors
+  - Ca. 10 operated at max. controller frequency
+- Fieldbus throughput: ca. 0.5GB/s
+  - 4 parallel connections to update 4 main axes in parallel  
+- strong flash light to improve image quality
+- flashing coupled to motion board because timing was critical
+
+---
+
+# Bondhead
+
+.center[![bondhead](bondhead-mechanics.png)]
+
+.credit[source: [2]]
+
+???
+
+- schematic view of a mockup from the side
+- Y-moves performed with motor of which the stator (the iron core) is mounted on the machine and the coil is attached to the bond head
+- inside bond head a rotational axis to perform X moves (which require compensation in Y)
+- attached to rotational Y axis another tiny rotational axis for Z moves
+
+---
+
+# Some facts
+
+- Mass of bond head: ca. 4kg
+- Max. acceleration of X-/Y-axes: ca. 15g
+- Max. acceleration of Z-axis 150g
+- 31+ wires per second world record
+
+.center[.image-rotation[![facts](http://www.bonus.org.uk/wp-content/uploads/2015/10/Facts.jpg)]]
+
+.credit[http://www.bonus.org.uk/wp-content/uploads/2015/10/Facts.jpg]
+
+???
+
+- combination of mass with high performance and in particular air bearing, i.e. almost no friction, means if the controller failed the system was uncontrollable
+  - kind of emergency break: stop air bearing
+  - damages surfaces which have to be extremely flat for high quality air bearing
+- deadtime was caused by transfer time of data over fieldbus to RTOS system:
+  - could only reliably use data from previous measurement for current cycle
+
+---
+
+template: inverse
+
+# High Performance
+
+---
+
+# Mechanical basics - Air bearing
+
+- Almost friction-less moves
+- Vacuum damping to reduce vibrations
+
+.center[.image-air[![pod racer](https://images.alphacoders.com/821/821431.jpg)]]
+
+.credit[https://images.alphacoders.com/821/821431.jpg]
+
+???
+
+- Air bearing was a piece of art
+- Imagine you hover on an air cushion and take a vertical hit
+  - The system would oscillate for quite a bit
+  - Disastrous for high precision wire bonding if you try to bond onto a chip
+- That's why the bond head was not only pushed up by the air bearing but at the same time also pulled down by a vacuum
+- Sides not closed, i.e. constant leak of air to be compensated
+
+---
+
+# Mechanical basics - Stiffness
+
+- High stiffness to reduce vibrations
+
+.center[.image-stiffness[![stiffness](http://www.engineering.com/portals/0/BlogFiles/Go-4%20Displacement.tif)]]
+
+.credit[http://www.engineering.com/portals/0/BlogFiles/Go-4%20Displacement.tif]
+
+???
+
+- Conflicting requirements:
+  - High precision: no vibration
+  - High performance: fast acceleration, i.e. cause vibrations
+- Solution: accelerate quite as fast as possible and design controller to settle as quickly as possible
+- Consequence: must reduce system vibrations, i.e. increase stiffness
+
+---
+
+# Mechanical basics - Rotational axes
+
+- Rotational Theta and Zeta axes
+  - Center of mass close to center of rotation
+  - Drawback: X and Y axes coupled
+
+.center[.image-rotation[![rotation](https://i.stack.imgur.com/9fiOU.png)]]
+
+.credit[https://i.stack.imgur.com/9fiOU.png]
+
+???
+
+- Guess you are all familiar with figure skaters slowly rotating at first and turning faster and faster
+- Same principle was used to increase performance of wire bonder
+- In the end the limitation was how to get the necessary amount of current into the motor
+- Typical move profile: accelerate, accelerate, accelerate, then decelerate, decelerate, decelerate because already there
+  - I.e. no constant velocity phase
+
+---
+
+template: inverse
+
+# High Precision
+
+---
+
+# How?
+
+Well, math...
+
+.center[.image-model[![math](https://www.brown.edu/Departments/Engineering/Courses/En4/Notes/vibrations_mdof/vibrations_mdof_files/eq0060P.gif)]]
+
+.credit[https://www.brown.edu/Departments/Engineering/Courses/En4/Notes/vibrations_mdof/vibrations_mdof_files/eq0060P.gif]
+
+---
+
+# Controller
+
+.left-column[
+- Closed loop controllers
+
+.center[![closed loop](https://www.electronics-tutorials.ws/systems/sys21.gif)]]
+
+.right-column[
+- Detailed simulink model of various aspects
+- E.g. to compensate:
+  - Non-linearities of Y-motor
+  - Cable harness
+- Optionally used vision
+  - to correct offsets
+
+.center[.image-model[![model](http://www.3dxo.com/images/models/l/bulbydd3d_800.jpg)]]]
+
+.credit[https://www.electronics-tutorials.ws/systems/sys21.gif<br>http://www.3dxo.com/images/models/l/bulbydd3d_800.jpg]
+
+???
+
+- high sampling frequency as consequence of high mechanical stiffness:
+- standard controller with 4kHz
+  - responsible to compensate deviation
+  - ca. 10 axes with 4kHz
+  - ca. 10 with 2kHz
+  - ca. 5 with 1kHz
+- Force controller with 96kHz
+  - responsible for rough positioning
+  - Necessary because of dead time and to deal with coupled axes
+  - feed forward of force (equivalent to current) with 4kHz, then interpolated
+  - mentioned non-linearity because stator of Y motor fix, so varying number of coils covered by stator, i.e. varying force
+- Controller Model included cable harness which - depending on position - pulled bond head back in Y with varying force
+- At some point used observer, that's more than one feedback loops into the controller, e.g. position and acceleration
+- Later reduced vibrations by counter-mass, pulled by into position by feather and with an additional position encoder to measure counter-mass extension
+
+---
+
+# Calibration and Compensation
+
+.left-column[
+- Calibrate irregularities of encoders
+.center[.image-model[![vision](http://3.bp.blogspot.com/_lN1ruKCxAno/SbTazYeLwAI/AAAAAAAAAU4/WBjPQ_hnYwM/s320/6.jpg)]]
+]
+.right-column[
+- Compensate temperature drift
+.center[.image-wirebonding-stages[![vision](http://www.sdoptics.com/wp-content/uploads/2011/11/wirebonding01.jpg)]]
+]
+
+.credit[http://3.bp.blogspot.com/_lN1ruKCxAno/SbTazYeLwAI/AAAAAAAAAU4/WBjPQ_hnYwM/s320/6.jpg<br>http://www.sdoptics.com/wp-content/uploads/2011/11/wirebonding01.jpg]
+
+???
+
+- Disclaimer: image not from Wire Bonder, but post-inspection (short circuit if wires touch each other)
+- Before using a machine had to do many calibrations
+  - Goal: compensate for all machine specific tolerances
+  - Many automatic ones (e.g. by searching holes in a high precision plate)
+  - Some required user interaction (e.g. user had to mark a position on the vision image)
+  - Calibrations went to an obsessive level, e.g. calibrated the irregularities of position encoders
+- But even a perfectly calibrated machine was not good enough
+- Inbound material had tolerances, as well, e.g.
+  - positioning of substrates in process area
+  - position (e.g. rotation) of chips on substrate etc.
+- That's why a powerful computer vision system was used to identify reference positions and derive other positions thereof
+- As consequence massive flash ensured good contrast even under varying ambient light
+- Flash had to be coupled to positioning to trigger at exactly the right time
+
+---
+
+template: inverse
+
+# Conclusion
+
+---
+
+# Quite an experience
+
+- Most brilliant people I've ever worked with
+- Coolest system I've ever worked with
+- Probably not targetting market:
+  - High-end segment too small
+  - Too expensive to low-end-ify
+- Sadly development stopped
+
+???
+
+- guy in charge of calibration was nick-named Houdini, because he was just a genious
+- WireBonder might have won some Swiss Award
+- Really sad that it didn't succeed in the market
+
+---
+
+# References
+
+- [1]: <a hfef="https://www.youtube.com/watch?v=mQP9J4iYYtA">demo</a><br>https://www.youtube.com/watch?v=mQP9J4iYYtA
+- [2]: <a href="http://ukacc.group.shef.ac.uk/proceedings/control2004/Papers/057.pdf">Experimental performance comparison for a high precision position control system with different observer design methods</a><br>http://ukacc.group.shef.ac.uk/proceedings/control2004/Papers/057.pdf
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
